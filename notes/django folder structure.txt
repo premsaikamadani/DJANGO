@@ -1,0 +1,194 @@
+
+“Can you explain Django folder structure?”
+
+✅ Best Interview Answer (Simple + Professional)
+
+Answer:
+
+Django project is divided into project-level files and app-level files.
+The project handles configuration, and apps handle business logic.
+
+
+
+After running:
+
+django-admin startproject myproject
+
+
+You’ll see something like this 👇
+
+myproject/
+│
+├── manage.py
+│
+├── myproject/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+
+1️⃣ manage.py (IMPORTANT ⭐)
+
+👉 Command center of Django project
+
+What it does:
+
+Starts server
+
+Runs migrations
+
+Creates apps
+
+Creates admin user
+
+Real-time use:
+
+python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
+
+🧠 Interview line
+
+manage.py is used to interact with Django project through command-line.
+
+
+
+2️⃣ Project Folder (myproject/)
+
+This folder contains project-level configuration.
+
+🔹 __init__.py
+
+Makes this folder a Python package
+
+Usually empty
+
+Rarely touched
+
+
+
+🔹 settings.py ⭐⭐⭐
+
+👉 Heart of Django project
+
+Contains:
+
+Installed apps
+
+Database config
+
+Middleware
+
+Templates
+
+Static files
+
+Security settings
+
+Example:
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'users',
+]
+
+
+🧠 Real-time
+
+Change database (SQLite → PostgreSQL)
+
+Add apps
+
+Configure AWS / email / security
+
+
+
+settings.py
+
+Central configuration file.
+
+Contains database, installed apps, middleware, static files, security settings.
+
+🗣 This file controls how the entire Django project behaves.
+
+
+
+
+
+🔹 urls.py ⭐⭐
+
+👉 URL routing file
+
+Maps URL → View
+
+Example:
+
+from django.urls import path
+from users.views import login
+
+urlpatterns = [
+    path('login/', login),
+]
+
+
+🧠 Real-time
+
+Controls what happens when user hits a URL
+
+
+urls.py
+
+Handles URL routing
+
+Maps URL → View function
+
+🗣 When a request comes, Django first checks urls.py.
+
+
+
+
+wsgi.py
+
+👉 Used for deployment
+
+Works with servers like Gunicorn
+
+Used in AWS / production
+
+🧠 You don’t touch this as fresher usually.
+
+
+wsgi.py
+
+Used for production deployment
+
+Works with web servers like Gunicorn or Apache
+
+🗣 Used when deploying Django application to production.
+
+
+🔹 asgi.py
+
+👉 Used for async features
+
+WebSockets
+
+Chat apps
+
+Real-time notifications
+
+🧠 Mostly for advanced apps.
+
+
+asgi.py
+
+Supports asynchronous features
+
+Used for WebSockets and real-time apps
+
+🗣 Used for async and real-time Django applications.
+
+
