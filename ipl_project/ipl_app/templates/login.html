@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>login</title>
 
     <!-- ✅ CSS MUST be inside <style> -->
     <style>
@@ -26,14 +26,14 @@
             max-width: 400px;
         }
 
-        .register-form {
+        .login-form {
             background: #fff;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        .register-form h2 {
+        .login-form h2 {
             text-align: center;
             margin-bottom: 25px;
             color: #333;
@@ -99,9 +99,9 @@
 <body>
 
 <div class="container">
-    <form class="register-form" method="POST" novalidate>
+   <form class="login" method="POST" novalidate>
     {% csrf_token %}
-    <h2>Create Account</h2>
+    <h2>Login</h2>
 
     <div class="input-group">
         <label>Username</label>
@@ -109,26 +109,11 @@
     </div>
 
     <div class="input-group">
-        <label>Email</label>
-        <input type="email" name="email" placeholder="Enter your email" required>
-    </div>
-
-    <div class="input-group">
         <label>Password</label>
         <input type="password" name="password" placeholder="Create password" required>
     </div>
 
-    <div class="input-group">
-        <label>Confirm Password</label>
-        <input type="password" name="confirm_password" placeholder="Confirm password" required>
-    </div>
-
-    <button type="submit">Register</button>
-
-    <p class="login-link">
-        Already have an account?
-        <a href="/login/">Login</a>
-    </p>
+    <button type="submit">Login</button>
 </form>
 
 </div>
