@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register Franchise</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f2f4f8;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      width: 340px;            /* reduced */
+      background: #ffffff;
+      padding: 20px;           /* reduced */
+      border-radius: 6px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      text-align: center;
+      margin-bottom: 18px;
+      font-size: 18px;         /* reduced */
+      font-weight: 600;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;         /* reduced */
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 7px 9px;        /* reduced */
+      margin-bottom: 12px;     /* reduced */
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;         /* reduced */
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #0d6efd;
+    }
+
+    input[type="file"] {
+      padding: 5px;
+      font-size: 12px;
+    }
+
+    button {
+      width: 100%;
+      background: #0d6efd;
+      color: white;
+      border: none;
+      padding: 9px;            /* reduced */
+      font-size: 14px;         /* reduced */
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background: #0b5ed7;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Register Franchise</h2>
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Franchise Name</label>
+        <input type="text" name="name" required />
+
+        <label>Short Name</label>
+        <input type="text" name="short_name" required />
+
+        <label>Founded Year</label>
+        <input type="number" name="founded_year" required />
+
+        <label>Number of Trophies</label>
+        <input type="number" name="no_of_trophies" required />
+
+        <label>Logo (Optional)</label>
+        <input type="file" name="logo" />
+
+        <label>City</label>
+        <input type="text" name="city" required />
+
+        <label>Owner</label>
+        <input type="text" name="owner" required />
+
+        <label>Coach</label>
+        <input type="text" name="coach" required />
+
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

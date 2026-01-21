@@ -1,0 +1,65 @@
+ORM:
+> ORM stands for Object-Relational Mapping.
+> It is a programming technique or layer that creates a bridge between object-oriented programming (00P)
+languages and relational databases.
+> ORM translates data between the objects in code and the database tables, enabling developers to work with database data using
+objects without needing to write complex SQL queries directly.
+
+> CRUD Operations
+
+$ To get access to python shell
+
+      python manage.py shell
+
+1. Create:
+
+      modelName.objects.create(field1=value, field2=value2, field3=value3, ... )
+
+2. GET:
+
+      modelName.objects.all()
+      modelName.objects.get(id=1)
+
+
+
+Django ORM:
+
+1. CREATE:
+
+ModelName.objects.create(field1=value1, field2=value2, field3=value3, .. ,)
+
+2. READ:
+
+# Get all objects
+ModelName. objects.all()
+
+
+# Filter(Return filtered multiple objects)
+ModelName.objects.filter(field=value)|
+
+
+# Get a single object (Return one object if condition is matching otherwise it returns empty)
+ModelName. objects.get (field=value)
+
+# Objects as list of dictionaries
+ModelName. objects. values()
+
+
+# To retrieve first or last record table.
+ModelName. objects. first()
+
+ModelName. objects. last ( )
+
+3. UPDATE:
+obj = ModelName.objects.get(field=value)
+
+obj. field_name = value
+
+obj. save()
+
+
+4. DELETE:
+
+obj = ModelName.objects.get(field=value)
+
+obj.delete()
