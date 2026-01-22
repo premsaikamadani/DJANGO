@@ -85,6 +85,7 @@
                 <th>City</th>
                 <th>Owner</th>
                 <th>Coach</th>
+                <th>Logo</th>
             </tr>
         </thead>
 
@@ -98,6 +99,13 @@
                 <td>{{ franchise.city }}</td>
                 <td>{{ franchise.owner }}</td>
                 <td>{{ franchise.coach }}</td>
+                <td>
+                    {% if franchise.logo %}
+                    <img src="{{ franchise.logo.url }}" alt="{{ franchise.name }} Logo" width="50" height="50">
+                    {% else %}
+                    No Logo
+                    {% endif %}
+                </td>
             </tr>
 
             {% endfor %}
