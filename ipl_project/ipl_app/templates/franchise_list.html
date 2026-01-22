@@ -92,7 +92,13 @@
         <tbody>
             {% for franchise in franchises %}
             <tr>
-                <td>{{ franchise.name }}</td>
+                <td>
+
+                    <a href="{% url 'franchise_details' franchise.id %}">
+                        {{ franchise.name }}
+                    </a>
+
+                </td>
                 <td>{{ franchise.short_name }}</td>
                 <td>{{ franchise.founded_year }}</td>
                 <td>{{ franchise.no_of_trophies }}</td>

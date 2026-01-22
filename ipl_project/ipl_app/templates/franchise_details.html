@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ franchise.name }} - Details</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .details p {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .details strong {
+            color: #555;
+        }
+
+        .logo {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 8px;
+            background: #fafafa;
+        }
+
+        .no-logo {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>{{ franchise.name }} ({{ franchise.short_name }})</h2>
+
+        <div class="details">
+            <p><strong>Founded Year:</strong> {{ franchise.founded_year }}</p>
+            <p><strong>Number of Trophies:</strong> {{ franchise.no_of_trophies }}</p>
+            <p><strong>City:</strong> {{ franchise.city }}</p>
+            <p><strong>Owner:</strong> {{ franchise.owner }}</p>
+            <p><strong>Coach:</strong> {{ franchise.coach }}</p>
+        </div>
+
+        {% if franchise.logo %}
+            <div class="logo">
+                <img src="{{ franchise.logo.url }}" alt="{{ franchise.name }} Logo">
+            </div>
+        {% else %}
+            <p class="no-logo">No Logo Available</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

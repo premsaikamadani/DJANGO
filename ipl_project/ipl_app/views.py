@@ -61,3 +61,9 @@ def register_franchise(request):
 def franchise_list(request):
     franchises = Franchise.objects.all()
     return render(request, 'franchise_list.html', {'franchises': franchises})
+
+
+def franchise_details(request, id):
+    print("Franchise ID:", id)
+    franchise = Franchise.objects.get(id=id)
+    return render(request, 'franchise_details.html', {'franchise': franchise})
