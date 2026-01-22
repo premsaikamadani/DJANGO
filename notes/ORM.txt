@@ -63,3 +63,26 @@ obj. save()
 obj = ModelName.objects.get(field=value)
 
 obj.delete()
+
+
+
+
+JINJA Templates
+
+# Display value of variable.
+<h1>{{ title }}</h1>
+
+# For writing conditonal statements
+{% if user_authenticated %}
+<h1>Welcome, {{ username }} !< /h1>
+{% else %}
+<p>Please log in to access the content .< /p>
+{% endif %}
+
+# For writing looping statements
+<ul>
+{% for item in items %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+

@@ -41,8 +41,6 @@ def register_franchise(request):
         owner = request.POST.get('owner')
         coach = request.POST.get('coach')
 
-        print(name, short_name, founded_year, no_of_trophies, city, owner, coach)
-
         Franchise.objects.create(
             name=name,
             short_name=short_name,
@@ -56,3 +54,8 @@ def register_franchise(request):
         return HttpResponse("Franchise registered successfully!")
     else:
         return render(request, 'register_franchise.html')
+
+
+def franchise_list(request):
+    franchises = Franchise.objects.all()
+    return render(request, 'franchise_list.html', {'franchises': franchises})

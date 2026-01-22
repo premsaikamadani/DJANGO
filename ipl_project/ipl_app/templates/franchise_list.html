@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Franchises</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #f4f6f9;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #0d6efd;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        th {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            font-size: 14px;
+            color: #333;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr:hover {
+            background: #f1f5ff;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>🏏 Registered Franchises</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Short Name</th>
+                <th>Founded Year</th>
+                <th>No of Trophies</th>
+                <th>City</th>
+                <th>Owner</th>
+                <th>Coach</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for franchise in franchises %}
+            <tr>
+                <td>{{ franchise.name }}</td>
+                <td>{{ franchise.short_name }}</td>
+                <td>{{ franchise.founded_year }}</td>
+                <td>{{ franchise.no_of_trophies }}</td>
+                <td>{{ franchise.city }}</td>
+                <td>{{ franchise.owner }}</td>
+                <td>{{ franchise.coach }}</td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>
