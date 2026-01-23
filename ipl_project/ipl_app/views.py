@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Franchise
 
 
@@ -64,6 +64,24 @@ def franchise_list(request):
 
 
 def franchise_details(request, id):
-    print("Franchise ID:", id)
     franchise = Franchise.objects.get(id=id)
     return render(request, 'franchise_details.html', {'franchise': franchise})
+
+
+def update_franchise(request, id):
+    franchise = Franchise.objects.get(id=id)
+    if request.method == "POST":
+        franchise.name = request.POST.get('name')
+        franchise.short_name = request.POST.get('short_name')
+        franchise.founded_year = request.POST.get('founded_year')
+        franchise.no_of_trophies = request.POST.get('no_of_trophies')
+        franchise.city = request.POST.get('city')
+        franchise.owner = request.POST.get('owner')
+        franchise.coach = request.POST.get('coach')
+        if request.FILES.get('logo'):
+            franchise.logo = request.FILES.get('logo')
+        franchise.save()
+        return redirect('franchise_list')
+
+    else:
+        return render(request, 'update_franchise.html', {'franchise': franchise})

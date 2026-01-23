@@ -68,6 +68,44 @@
                 font-size: 12px;
             }
         }
+        /* Action Button Styling */
+td button {
+    background: #0d6efd;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Anchor inside button */
+td button a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Hover effect */
+td button:hover {
+    background: #084298;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+}
+
+/* Active click effect */
+td button:active {
+    transform: scale(0.96);
+}
+
+/* Mobile friendly */
+@media (max-width: 768px) {
+    td button {
+        padding: 5px 10px;
+    }
+}
+
     </style>
 </head>
 
@@ -80,12 +118,8 @@
             <tr>
                 <th>Name</th>
                 <th>Short Name</th>
-                <th>Founded Year</th>
-                <th>No of Trophies</th>
-                <th>City</th>
-                <th>Owner</th>
-                <th>Coach</th>
                 <th>Logo</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -100,17 +134,21 @@
 
                 </td>
                 <td>{{ franchise.short_name }}</td>
-                <td>{{ franchise.founded_year }}</td>
-                <td>{{ franchise.no_of_trophies }}</td>
-                <td>{{ franchise.city }}</td>
-                <td>{{ franchise.owner }}</td>
-                <td>{{ franchise.coach }}</td>
+            
                 <td>
                     {% if franchise.logo %}
                     <img src="{{ franchise.logo.url }}" alt="{{ franchise.name }} Logo" width="50" height="50">
                     {% else %}
                     No Logo
                     {% endif %}
+                </td>
+                <td>
+                    <button>
+                        <a href="{% url 'update_franchise' franchise.id %}">
+                            Update
+
+                        </a>
+                    </button>
                 </td>
             </tr>
 
