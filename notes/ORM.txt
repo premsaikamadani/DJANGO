@@ -70,19 +70,118 @@ obj.delete()
 JINJA Templates
 
 # Display value of variable.
-<h1>{{ title }}</h1>
+  <h1>{{ title }}</h1>
 
 # For writing conditonal statements
 {% if user_authenticated %}
-<h1>Welcome, {{ username }} !< /h1>
+   <h1>Welcome, {{ username }} !< /h1>
 {% else %}
-<p>Please log in to access the content .< /p>
+   <p>Please log in to access the content .< /p>
 {% endif %}
 
 # For writing looping statements
 <ul>
 {% for item in items %}
-<li>{{ item }}</li>
+  <li>{{ item }}</li>
 {% endfor %}
 </ul>
 
+
+
+
+# Configuration to add images:
+✅ STEP 1: Update settings.py
+
+Open ipl_project/settings.py and add at the bottom:
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+✅ This tells Django:
+
+where images are stored → media/
+
+how to serve them → /media/
+
+✅ STEP 2: Update urls.py (IMPORTANT)
+
+Open ipl_project/urls.py
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+At the bottom of file, add:
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+✅ This allows Django to serve images in development mode.
+
+✅ STEP 3: Verify Model (already OK)
+
+Your model is correct:
+
+class Franchise(models.Model):
+    logo = models.ImageField(upload_to='logos/', blank=True, null=True)
+
+
+📁 Images will be stored in:
+
+media/logos/
+
+✅ STEP 4: Install Pillow (REQUIRED)
+
+Django needs Pillow for images.
+
+pip install pillow
+
+
+Then restart server:
+
+python manage.py runserver
+
+✅ STEP 5: Upload Image from Admin or Form
+From Admin Panel:
+http://127.0.0.1:8000/admin/
+
+
+Upload logo → Save
+
+Images will appear in:
+
+media/logos/csk.png
+
+✅ STEP 6: Use Image in Template
+
+In franchise_list.html:
+
+<td>
+    {% if franchise.logo %}
+        <img src="{{ franchise.logo.url }}" width="60">
+    {% else %}
+        No Logo
+    {% endif %}
+</td>
+
+✅ STEP 7: FULL TABLE WITH LOGO COLUMN
+<th>Logo</th>
+
+<td>
+    {% if franchise.logo %}
+        <img src="{{ franchise.logo.url }}" width="50" height="50" style="object-fit:contain;">
+    {% else %}
+        —
+    {% endif %}
+</td>
+
+❌ COMMON MISTAKES (YOU HAD SOME)
+
+❌ Forgot MEDIA_URL
+❌ Forgot static() in urls
+❌ Didn’t install Pillow
+❌ Used {{ logo.url }} without checking if logo

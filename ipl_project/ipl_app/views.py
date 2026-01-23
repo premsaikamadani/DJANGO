@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .models import Franchise
+from .forms import PlayerForm
 
 
 def home(request):
@@ -92,3 +93,15 @@ def delete_franchise(request, id):
     if request.method == "POST":
         franchise.delete()
         return redirect('franchise_list')
+
+def register_player(request):
+    if request.method == "POST":
+        form = PlayerForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Player registered successfully!")
+        else:
+            return HttpResponse("Invalid request method.")
+    else:
+        form = PlayerForm()
+        return render(request, 'register_player.html', {'form': form})
