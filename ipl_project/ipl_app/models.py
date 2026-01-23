@@ -16,3 +16,25 @@ class Franchise(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.short_name})"
+
+
+
+class Player(models.Model):
+    ROLE_CHOICES = [
+        ('Batsman', 'Batsman'),
+        ('Bowler', 'Bowler'),
+        ('All-Rounder', 'All-Rounder'),
+        ('Wicket-Keeper', 'Wicket-Keeper'),
+    ]
+    
+    name = models.CharField(max_length=100)
+    age = models.IntegerField()
+    role = models.CharField(max_length=50)
+    nationality = models.CharField(max_length=50)
+    franchise = models.ForeignKey(Franchise, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'players'
+
+    def __str__(self):
+        return f"{self.name} ({self.role})"

@@ -1,0 +1,5 @@
+Modal Form: Model Form is a helper class that automatically creates a form based on Django Model.
+
+> Saves time by auto generating fields from the Model
+> It ensures form fields are in sync with database model.
+> Comes with built-in validation based on model constraints.
