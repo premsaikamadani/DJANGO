@@ -85,3 +85,10 @@ def update_franchise(request, id):
 
     else:
         return render(request, 'update_franchise.html', {'franchise': franchise})
+    
+
+def delete_franchise(request, id):
+    franchise = Franchise.objects.get(id=id)
+    if request.method == "POST":
+        franchise.delete()
+        return redirect('franchise_list')
