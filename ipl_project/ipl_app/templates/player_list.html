@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Players</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: #f4f6f9;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #0d6efd;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        th {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            font-size: 14px;
+            color: #333;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr:hover {
+            background: #f1f5ff;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        img {
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-update {
+            background: #0d6efd;
+        }
+
+        .btn-update:hover {
+            background: #084298;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background: #a71d2a;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            table {
+                font-size: 12px;
+            }
+
+            .btn {
+                padding: 5px 10px;
+            }
+        }
+        .Back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background-color: #0d6efd;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+}
+
+/* Hover effect */
+.Back-link:hover {
+    background-color: #084298;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(13, 110, 253, 0.35);
+}
+
+/* Active click */
+.Back-link:active {
+    transform: scale(0.96);
+}
+
+    </style>
+</head>
+
+<body>
+
+    <h2>🏏 Registered Players</h2>
+    <a href="{% url 'register_player' %}" class="Back-link"> Back to register_player</a>
+
+    {% if players %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Role</th>
+                <th>Nationality</th>
+                <th>Franchise</th>
+                <th>Player Photo</th>
+                <th>Franchise Logo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for player in players %}
+            <tr>
+
+                <td>
+                    <a href="{% url 'franchise_details' player.id %}">
+                        {{ player.name }}
+                    </a>
+                </td>
+
+                <td>{{ player.age }}</td>
+                <td>{{ player.role }}</td>
+                <td>{{ player.nationality }}</td>
+                <td>{{ player.franchise }}</td>
+
+                <td>
+                    {% if player.photo %}
+                        <img src="{{ player.photo.url }}" alt="Player Photo" width="50" height="50">
+                    {% else %}
+                        No Photo
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if player.franchise.logo %}
+                        <img src="{{ player.franchise.logo.url }}" alt="Franchise Logo" width="50" height="50">
+                    {% else %}
+                        No Logo
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a href="{% url 'update_franchise' player.franchise.id %}" class="btn btn-update">
+                        Update
+                    </a>
+
+                    <form method="POST" action="{% url 'delete_franchise' player.franchise.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-delete"
+                            onclick="return confirm('Are you sure you want to delete this franchise?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        <p style="text-align:center;">No players registered yet.</p>
+    {% endif %}
+
+</body>
+
+</html>

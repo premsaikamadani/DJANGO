@@ -4,4 +4,5 @@ from .models import Player
 class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
-        fields = ['name', 'age', 'role', 'nationality', 'franchise']
+        #fields = '__all__'
+        fields = ['name', 'age', 'role', 'nationality', 'franchise', 'photo']

@@ -32,6 +32,7 @@ class Player(models.Model):
     role = models.CharField(max_length=50)
     nationality = models.CharField(max_length=50)
     franchise = models.ForeignKey(Franchise, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='players/', blank=True, null=True)
 
     class Meta:
         db_table = 'players'

@@ -106,12 +106,41 @@ td button:active {
     }
 }
 
+.Back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    background-color: #0d6efd;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+}
+
+/* Hover effect */
+.Back-link:hover {
+    background-color: #084298;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(13, 110, 253, 0.35);
+}
+
+/* Active click */
+.Back-link:active {
+    transform: scale(0.96);
+}
+
+
     </style>
 </head>
 
 <body>
 
     <h2>🏏 Registered Franchises</h2>
+    <a href="{% url 'player_list' %}" class="Back-link"> player list</a>
+       
 
     <table>
         <thead>

@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .models import Franchise
+from .models import Franchise, Player
 from .forms import PlayerForm
 
 
@@ -99,9 +99,14 @@ def register_player(request):
         form = PlayerForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponse("Player registered successfully!")
+            return redirect('player_list')
         else:
             return HttpResponse("Invalid request method.")
     else:
         form = PlayerForm()
         return render(request, 'register_player.html', {'form': form})
+    
+
+def player_list(request):
+    players = Player.objects.all()
+    return render(request, 'player_list.html', {'players': players})
