@@ -1,0 +1,33 @@
+Crispy Forms: Make forms look good and easier to style, it uses Bootstrap framework.
+
+Feature             Modal Form
+                    Create form using
+                    django mo
+                    Purpose
+
+
+Auto field
+valdidation
+
+
+Auto field
+valdidation
+
+Form Validations
+
+Can be combine
+
+
+
+To use crispy forms:
+pip install django-crispy-forms
+pip install crispy-bootstrap5
+
+In settings.py
+
+INSTALLED_APPS = [
+'crispy_forms',
+]
+
+# Crispy Forms settings
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

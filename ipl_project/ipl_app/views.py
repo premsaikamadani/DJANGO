@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
-from .models import Franchise, Player
-from .forms import PlayerForm
+from .models import Franchise, Player, stadium
+from .forms import PlayerForm, stadiumForm
 
 
 def home(request):
@@ -110,3 +110,16 @@ def register_player(request):
 def player_list(request):
     players = Player.objects.all()
     return render(request, 'player_list.html', {'players': players})
+
+
+def register_stadium(request):
+    if request.method == "POST":
+        form = stadiumForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Stadium registered successfully!")
+        else:
+            return HttpResponse("Invalid request method.")
+    else:
+        form = stadiumForm()
+        return render(request, 'register_stadium.html', {'form': form})
