@@ -1,7 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .models import Franchise, Player, stadium
-from .forms import PlayerForm, stadiumForm, userRegistrationForm, profileForm
+from .forms import (
+    PlayerForm,
+    StadiumForm,
+    UserRegistrationForm,
+    ProfileForm
+)
+
 
 
 def home(request):
@@ -114,25 +120,44 @@ def player_list(request):
 
 def register_stadium(request):
     if request.method == "POST":
-        form = stadiumForm(request.POST)
+        form = StadiumForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("stadium_list")
         else:
             return HttpResponse("Invalid request method.")
     else:
-        form = stadiumForm()
+        form = StadiumForm()
+
         return render(request, 'register_stadium.html', {'form': form})
 
 def stadium_list(request):
     stadiums = stadium.objects.all()
     return render(request, 'stadium_list.html', {'stadiums': stadiums})
 
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+
 def register_user(request):
     if request.method == "POST":
-       print()
+        user_form = UserRegistrationForm(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+
+            return HttpResponse("User registered successfully!")
 
     else:
-        user_form = userRegistrationForm()
-        profile_form = profileForm()
-        return render(request, 'register_user.html', {'user_form': user_form, 'profile_form': profile_form})
+        user_form = UserRegistrationForm()
+        profile_form = ProfileForm()
+
+    return render(request, 'register_user.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
