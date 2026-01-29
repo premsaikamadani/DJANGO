@@ -117,9 +117,13 @@ def register_stadium(request):
         form = stadiumForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("Stadium registered successfully!")
+            return redirect("stadium_list")
         else:
             return HttpResponse("Invalid request method.")
     else:
         form = stadiumForm()
         return render(request, 'register_stadium.html', {'form': form})
+
+def stadium_list(request):
+    stadiums = stadium.objects.all()
+    return render(request, 'stadium_list.html', {'stadiums': stadiums})
