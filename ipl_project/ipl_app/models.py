@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Franchise(models.Model):
@@ -47,5 +48,14 @@ class stadium(models.Model):
     capacity = models.IntegerField()
     home_team = models.ForeignKey(Franchise, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
+    
+
+class profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=15)
+    address = models.TextField()
+    profile_picture = models.ImageField(upload_to='profiles/', blank=True, null=True)
+    def __str__(self) -> str:
+        return f"{self.user.username} Profile"

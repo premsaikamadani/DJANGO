@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from .models import Franchise, Player, stadium
-from .forms import PlayerForm, stadiumForm
+from .forms import PlayerForm, stadiumForm, userRegistrationForm, profileForm
 
 
 def home(request):
@@ -127,3 +127,12 @@ def register_stadium(request):
 def stadium_list(request):
     stadiums = stadium.objects.all()
     return render(request, 'stadium_list.html', {'stadiums': stadiums})
+
+def register_user(request):
+    if request.method == "POST":
+       print()
+
+    else:
+        user_form = userRegistrationForm()
+        profile_form = profileForm()
+        return render(request, 'register_user.html', {'user_form': user_form, 'profile_form': profile_form})
