@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 from .models import Franchise, Player, stadium
 from .forms import (
@@ -165,6 +166,11 @@ def register_user(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render
+
 def login_user(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -172,10 +178,11 @@ def login_user(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return HttpResponse("Login successful!")
-
+            messages.success(request, f"Login successful! Welcome {user.username}")
+        else:
+            messages.error(request, "Invalid username or password.")
     else:
         form = AuthenticationForm()
 
-    return render(request, 'login.html', {'form': form})
-
+    # ✅ ALWAYS pass form
+    return render(request, 'login_user.html', {'form': form})
