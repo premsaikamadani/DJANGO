@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'ipl_app',
     'ordersApp',
+    'StoreApp',
 ]
 
 MIDDLEWARE = [

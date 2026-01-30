@@ -1,0 +1,22 @@
+Class Based Views: It allows as to organize view logic in a class instead of functions.
+
+
+Predefined Views:
+
+
+CreateView
+ListView
+UpdateView
+DetailView
+DeleteView
+
+
+Syntax:
+
+from django.views.generic.edit import CreateView
+
+class FranchiseCreateView(CreateView):
+model = Mode lName
+form_class = FormName
+template_name = 'fileName.html'
+success_url = reverse_lazy('route_name' )
