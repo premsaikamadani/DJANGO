@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #ffffff;
+            margin: 40px;
+            color: #222;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        .product-row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .product-row img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+        .product-info h3 {
+            margin: 0 0 6px;
+            font-size: 20px;
+        }
+
+        .product-info p {
+            margin: 4px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .price {
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #222;
+            border: 1px solid #222;
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>Product Details</h2>
+</header>
+
+<div class="product-row">
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+    <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p class="price">₹{{ product.price }} | {{ product.discount }}% off</p>
+    </div>
+</div>
+
+<a href="{% url 'product_list' %}" class="back-btn">← Back to Products</a>
+
+</body>
+</html>

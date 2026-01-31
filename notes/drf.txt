@@ -1,0 +1,23 @@
+Django Rest Framework (DRF): It's a powerful and flexible toolkit for build Rest APIs (Application Programming
+
+DRF -> Return information in machine readable format like JSON.
+
+This machine readable format can consumed by frontend frameworks, mobile app, tv apps etc ...
+
+Concepts:
+1. Serializer: For transforming models <- > JSON.
+2. APIView: Class were we define the logic of API Endpoint.
+3. Router: Automatically create url patterns from views.
+4. Authentication
+
+Eg APIs:
+
+GET - /api/products - List all products
+
+GET - /api/products/7 - Get Product Details By Id.
+
+POST - /api/products - Create Product
+
+PUT / PATCH - /api/products/7 - Complete or partial updation of Product
+
+DELETE - /api/products/id - Delete Product
