@@ -21,3 +21,61 @@ POST - /api/products - Create Product
 PUT / PATCH - /api/products/7 - Complete or partial updation of Product
 
 DELETE - /api/products/id - Delete Product
+
+
+
+DRF:
+
+Installation:
+
+pip install djangorestframework
+
+settings.py
+
+INSTALLED_APPS = [
+
+'rest_framework'
+
+]
+
+
+Serializer
+
+Serialization -> Converting model into json (for rejading)
+
+DeSerialization -> Converting json back to model (For creating/updating)
+
+
+
+
+Product
+
+from rest_framework import serializers
+from .models import Product
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+       model = Product
+       fields = '_all_'
+
+
+
+Request
+
+Body
+
+-> application/json - For JSON
+
+-> multipart/form-data - For JSON + Files
+
+
+
+views.py
+
+from django. shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework. response import Response
+from rest framework import status
+from .models import Item
+from .serializers import ItemSerializer
+I
